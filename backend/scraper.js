@@ -13,16 +13,12 @@ const fetchData = async () => {
 
 const getResults = async() => {
     const $ = await fetchData()
-    $("table tr"[0]).each((index, element) => {
-        console.log(element)
-        // flowerName.add($(element).find('a').text())
-    })
-    $("table.itemlist tr td").each((index, element) => {
-        flowerDescription.add($(element).text())
-    })
-    $("table.itemlist tr td").each((index, element) => {
+    $("table tr").each((index, element) => {
+        flowerName.add($(element).find('a').text().trim())
+        flowerDescription.add($(element).find('td:nth-child(2)').text().trim())
         flowerImage.add($(element).find('img').attr('src'))
     })
+   
     console.log({
         flowerName: [...flowerName],
         flowerDescription: [...flowerDescription],
