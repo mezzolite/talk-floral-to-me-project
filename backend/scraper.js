@@ -19,11 +19,46 @@ const getResults = async() => {
         flowerImage.add($(element).find('img').attr('src'))
     })
    
-    console.log({
+    return {
         flowerName: [...flowerName],
         flowerDescription: [...flowerDescription],
         flowerImage: [...flowerImage]
-    })
+    }
 }
 
-module.exports = getResults
+// function dataTransformation(){
+//     let flowers = getResults().flowerName
+//     console.log(flowers)
+// }
+
+async function dataTransformation(){
+return await getResults()
+        .then(response => response)
+        .then(response => {
+        return response.flowerName.map(flower => {
+            const flowerObject = {}
+            flowerObject.name = flower
+            
+            response.flowerDescription.map(description => {
+                return description.includes(flower)  
+                    ? flowerObject.description = description
+                    : null
+            })
+        
+            response.flowerImage.slice(1).map(image => {
+                const splitImage = image.split('/')
+                const imageFlower = splitImage[5].split('.')
+                const flowerElement = imageFlower[0]
+                return flowerElement.includes(flower.toLowerCase())
+                    ? flowerObject.image = `https://www.theflowerexpert.com${image}`
+                    : null
+            })
+
+            return flowerObject
+        })})
+
+}
+
+// dataTransformation()
+
+module.exports = dataTransformation()
