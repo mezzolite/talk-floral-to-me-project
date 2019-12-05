@@ -37,18 +37,25 @@ nav {
     margin: .5%;
 }
 
-nav > button {
+nav > a {
     border-radius: 6px;
     text-align: center;
     text-transform: uppercase;
     font-family: 'EB Garamond', serif; 
-    font-size: 70%;
+    font-size: 80%;
     margin: .5%;
     margin-left: 2%;
     color: ivory;
     background-color: #e26633;
     outline: none;
     cursor: pointer;
+    text-decoration: none;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+    padding: 4%;
+    width: 6rem;
     
 }
 
@@ -88,6 +95,7 @@ nav > button {
     font-weight: bold;
     display: flex;
     flex-direction: column;
+    box-shadow: 10px 5px 5px hsl(190, 32%, 25%);
 }
 
 #major-meanings > div > ul {
@@ -174,4 +182,73 @@ nav > button {
     padding: 3%;
     outline: none;
     cursor: pointer;
+}
+
+#bouquet-encompass {
+    display: none;
+}
+
+#bouquet-container {
+    background-color: #e26633;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+.bouquet-card {
+    margin: 1%;
+    background-color: hsl(190, 32%, 36%); 
+    padding: 2%;
+    border-radius: 6px;
+    flex-basis: 15rem;
+    align-items: center;
+    color: ivory;
+}
+
+.bouquet-card > h4 {
+    padding-bottom: 5%;
+}
+
+.new-bouquet-form {
+    padding: 2%;
+    color: ivory;
+
+}
+
+.new-bouquet-form > fieldset > legend {
+    padding-bottom: 10%;
+}
+
+.new-bouquet-form > fieldset > input {
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+#bouquet-creation-button {
+    display: block;
+    border-radius: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'EB Garamond', serif; 
+    font-size: 70%;
+    margin: 2%;
+    margin-left: 0%;
+    background-color: hsl(190, 32%, 36%);
+    color: ivory;
+    padding: 3%;
+    outline: none;
+    cursor: pointer;
+}
+
+#delete-bouquet-button {
+    border-radius: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'EB Garamond', serif; 
+    font-size: 90%;
+    margin: 2%;
+    margin-left: 0%;
+    background-color: hsl(190, 32%, 36%);
+    color: #e26633;
 }

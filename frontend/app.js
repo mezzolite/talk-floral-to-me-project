@@ -15,17 +15,11 @@ const loveUl = document.querySelector('#love-ul')
 const wealthUl = document.querySelector('#wealth-ul')
 const characterUl = document.querySelector('#character-ul')
 
-// const header = document.querySelector('header')
-// window.onscroll = function(){pinnedHeader()}
-// const sticky = header.offsetTop
+const bouquetCollectionButton = document.querySelector('#bouquet-coll-button')
+const bouquetOuterContainer = document.querySelector('#bouquet-encompass')
+const bouquetContainer = document.querySelector('#bouquet-container')
 
-// function pinnedHeader(){
-//     if (window.pageXOffset >= sticky){
-//         header.classList.add('sticky')
-//     } else {
-//         header.classList.remove('sticky')
-//     }
-// }
+const newBouquetForm = document.querySelector('.new-bouquet-form')
 
 beautyMeanings = [
     'daintiness',
@@ -133,7 +127,6 @@ function buttonCreation(meaningArray, meaningUl){
 function changeUlDisplay(meaningUl){
      if(meaningUl.style.display === 'block'){
          meaningUl.style.display = 'none'
-         meaningUl.childNodes.remove()
     } else {
         meaningUl.style.display = 'block'
     }
@@ -194,6 +187,75 @@ majorMeaningButtons.addEventListener('click', event => {
     } 
 })
 
+bouquetCollectionButton.addEventListener('click', event => {
+    if(bouquetOuterContainer.style.display === 'block'){
+        bouquetOuterContainer.style.display = 'none'
+   } else {
+       bouquetOuterContainer.style.display = 'block'
+   }
+
+})
+
+function fetchBouquets(){
+    fetch('http://localhost:3000/bouquets')
+         .then(response => response.json())
+         .then(bouquets => bouquets.map(bouquet => {
+             const bouquetCard = document.createElement('div')
+             bouquetCard.className = "bouquet-card"
+    
+             const bouquetName = document.createElement('h4')
+             bouquetName.innerText = bouquet.name
+    
+             const bouquetFlowers = document.createElement('div')
+             bouquetFlowers.className = "bouquet-flowers"
+    
+             bouquet.flowers.map(flower =>{
+                 const bouquetFlowerName = document.createElement('h5')
+                 bouquetFlowerName.innerText = flower.name
+                 const bouquetFlowerImage = document.createElement('img')
+                 bouquetFlowerImage.src = flower.image
+    
+                 bouquetFlowers.append(bouquetFlowerName, bouquetFlowerImage)
+             })
+
+             const deleteBouquetButton = document.createElement('button')
+             deleteBouquetButton.innerText = "X"
+             deleteBouquetButton.id = "delete-bouquet-button"
+    
+             bouquetCard.append(bouquetName, bouquetFlowers, deleteBouquetButton)
+             bouquetContainer.append(bouquetCard)
+         }))
+
+}
+
+newBouquetForm.addEventListener('submit', event =>{
+    event.preventDefault()
+
+    const bouquetData = new FormData(event.target)
+    const name = bouquetData.get('name')
+    
+    const bouquetCard = document.createElement('div')
+    bouquetCard.className = "bouquet-card"
+    
+    const bouquetName = document.createElement('h4')
+    bouquetName.innerText = name
+
+    bouquetCard.append(bouquetName)
+    bouquetContainer.append(bouquetCard)
+
+    fetch('http://localhost:3000/bouquets', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          "name": name
+        })
+      })
+})
+
+fetchBouquets()
 
 
 

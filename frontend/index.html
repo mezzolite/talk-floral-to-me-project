@@ -11,8 +11,8 @@
 <body>
     <header>
         <nav>
-            <button id="bouquet-button">Bouquet Collection</button>
-            <button id="home">Home</button>
+            <a href="#bouquet-encompass" id="bouquet-coll-button">Bouquet Collection</a>
+            <a href="http://localhost:3001/">Home</a>
         </nav>
         <h1>Talk Floral To Me</h1>
         <h2>Say It With Flowers</h2>
@@ -36,7 +36,21 @@
             </div>
         </ul>
     </div>
-    <div id="flower-container">
+        <div id="flower-container">
+    </div>
+    <div id="bouquet-encompass">
+        <div id='bouquet-container'>
+            <div class="bouquet-card">
+                <form method="post" class="new-bouquet-form">
+                    <fieldset>
+                        <legend>Create a new Bouquet</legend>
+                        <label for='name'>Bouquet Name:</label>
+                        <input type="text" name='name' id='name' required>
+                        <input type="submit" value="Create New Bouquet!" id="bouquet-creation-button">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
     
     <script src="app.js"></script>

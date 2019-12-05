@@ -36,5 +36,14 @@ app.get('/bouquets', (request, response) => {
     .then(bouquets => response.send(bouquets))
 })
 
+app.post('/bouquets', (request, response) => {
+    queries.createBouquet(request.body)
+    .then(bouquet => response.json(bouquet))
+})
+
+app.post('/bouquets-flowers', (request, response) => {
+    queries.createBouquetFlowers(request.body)
+    .then(bouquetFlower => response.json(bouquetFlower)) 
+})
 
 
