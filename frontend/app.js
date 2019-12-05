@@ -1,7 +1,8 @@
-console.log('better work')
 
 const meaningContainer = document.querySelector('.meaning-container')
 const majorMeaningButtons = document.querySelector('#major-meanings')
+const flowerContainer = document.querySelector('#flower-container')
+
 const beautyDiv = document.querySelector('#beauty')
 const happinessDiv = document.querySelector('#happiness')
 const loveDiv = document.querySelector('#love')
@@ -127,26 +128,57 @@ function changeUlDisplay(meaningUl){
     }
 }
 
+function meaningButtonClick(meaningUl){
+    meaningUl.addEventListener('click', event => {
+        fetch('http://localhost:3000/flowers')
+            .then(response => response.json())
+            .then(flowers => flowers.map(flower => {
+                if(flower.description.includes(event.target.innerText.toLowerCase())){
+                const flowerCard = document.createElement('div')
+                flowerCard.className = 'flower-card'
+                
+                const flowerName = document.createElement('h4')
+                flowerName.innerText = flower.name 
+                
+                const flowerDescription = document.createElement('p')
+                flowerDescription.innerText = flower.description 
+                
+                const flowerImage = document.createElement('img')
+                flowerImage.src = flower.image 
+                flowerImage.alt = flower.name
+                
+                flowerCard.append(flowerName, flowerDescription, flowerImage)
+                flowerContainer.append(flowerCard)
+                }
+            }))
+            .catch(error => console.log(error))
+    })
+}
+
 majorMeaningButtons.addEventListener('click', event => {
     if(event.target === beautyDiv){
         buttonCreation(beautyMeanings, beautyUl)
-        changeUlDisplay(beautyUl)  
+        changeUlDisplay(beautyUl)
+        meaningButtonClick(beautyUl)
     } else if(event.target === happinessDiv){
         buttonCreation(happinessMeanings, happinessUl)
         changeUlDisplay(happinessUl)
+        meaningButtonClick(happinessUl)
     } else if(event.target === loveDiv){
         buttonCreation(loveMeanings, loveUl)
         changeUlDisplay(loveUl)
+        meaningButtonClick(loveUl)
     } else if(event.target === wealthDiv){
         buttonCreation(wealthMeanings, wealthUl)
         changeUlDisplay(wealthUl)
+        meaningButtonClick(wealthUl)
     } else if(event.target === characterDiv){
         buttonCreation(characterMeanings, characterUl)
         changeUlDisplay(characterUl)
+        meaningButtonClick(characterUl)
     } 
 })
 
-fetch('')
 
 
 

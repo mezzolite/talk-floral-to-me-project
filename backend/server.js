@@ -4,7 +4,6 @@ const port = process.env.PORT || 3000
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const knex = require('./knex')
-// const getResults = require("./scraper")
 const queries = require('./queries')
 
 app.use(bodyParser.json())

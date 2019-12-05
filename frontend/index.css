@@ -5,19 +5,20 @@
 
 body {
     background-image: url('http://inn.spb.ru/images/500/DSC100530683.jpg');
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-position: center;
     background-size: cover;
-    opacity: 90%;
+    opacity: 100%;
     font-family: 'Spectral SC', serif;
     height: 100vh;
+
     
 }
 
 
 header {
     background-color: hsl(190, 32%, 36%);
-    opacity: 100%;
+    opacity: 80%;
     padding: 1%;
     align-items: flex-start;
 }
@@ -37,6 +38,7 @@ h2 {
     display: flex;
     margin-top: 3%;
     align-items: flex-start;
+    opacity: 80%;
 }
 
 #major-meanings > div {
@@ -62,10 +64,7 @@ h2 {
 
 #major-meanings > div > ul {
     display: flex;
-    /* flex-flow: column nowrap; */
-    /* align-items: flex-start; */
     margin-top: 4%;
-    /* justify-content: center; */
 }
 
 #major-meanings > div > ul > button {
@@ -78,7 +77,6 @@ h2 {
     margin: 2%;
     background-color: hsl(190, 32%, 36%);
     color: ivory;
-
 }
 
 #beauty-ul {
@@ -101,3 +99,33 @@ h2 {
     display: none;
 }
 
+#flower-container {
+    background-color: #e26633;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+.flower-card {
+    margin: 1%;
+    background-color: hsl(190, 32%, 36%);
+    flex-basis: 18rem;
+    border-radius: 6px;
+}
+
+.flower-card > h4 {
+    padding: 5%;
+    font-size: larger;
+}
+
+.flower-card > p {
+    padding: 5%;
+    padding-top: 0%;
+    font-family: 'EB Garamond', serif;
+    font-size: larger;
+}
+
+.flower-card > img {
+    padding: 5%;
+    padding-top: 0%;
+}
