@@ -26,10 +26,6 @@ const getResults = async() => {
     }
 }
 
-// function dataTransformation(){
-//     let flowers = getResults().flowerName
-//     console.log(flowers)
-// }
 
 async function dataTransformation(){
 return await getResults()
@@ -58,7 +54,5 @@ return await getResults()
         })})
 
 }
-
-// dataTransformation()
 
 module.exports = dataTransformation()
