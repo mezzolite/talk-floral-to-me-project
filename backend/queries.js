@@ -29,13 +29,13 @@ module.exports = {
         return database('bouquets')
     },
     
-    createBouquet(){
+    createBouquet(bouquet){
         return database('bouquets')
             .insert(bouquet)
             .returning('*')
     },
 
-    deleteBouquet(){
+    deleteBouquet(id){
         return database('bouquets')
             .whereNotExists('id', id)
             .delete()
@@ -53,14 +53,14 @@ module.exports = {
                             return bouquet
                         })
                 })
-                console.log(Promise.all(promises))
                 return Promise.all(promises)
-
             })
     },
 
-
-    
-
+    createBouquetFlowers(bouquetFlower){
+        return database('bouquets-flowers')
+            .insert(bouquetFlower)
+            .returning('*')
+    }
 
 }
