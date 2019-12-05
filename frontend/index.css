@@ -47,6 +47,8 @@ nav > button {
     margin-left: 2%;
     color: ivory;
     background-color: #e26633;
+    outline: none;
+    cursor: pointer;
     
 }
 
@@ -104,6 +106,8 @@ nav > button {
     background-color: hsl(190, 32%, 36%);
     color: ivory;
     padding: 2%;
+    outline: none;
+    cursor: pointer;
 }
 
 #beauty-ul {
@@ -168,4 +172,6 @@ nav > button {
     color: ivory;
     float: left;
     padding: 3%;
+    outline: none;
+    cursor: pointer;
 }
