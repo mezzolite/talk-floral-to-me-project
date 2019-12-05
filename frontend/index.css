@@ -10,11 +10,8 @@ body {
     background-size: cover;
     opacity: 100%;
     font-family: 'Spectral SC', serif;
-    height: 100vh;
-
-    
+    height: 100vh;  
 }
-
 
 header {
     background-color: hsl(190, 32%, 36%);
@@ -33,6 +30,37 @@ h2 {
     padding-left: .5%;
     padding-top: .3%;
 }
+
+nav {
+    float: right;
+    display: flex;
+    margin: .5%;
+}
+
+nav > button {
+    border-radius: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'EB Garamond', serif; 
+    font-size: 70%;
+    margin: .5%;
+    margin-left: 2%;
+    color: ivory;
+    background-color: #e26633;
+    outline: none;
+    cursor: pointer;
+    
+}
+
+/* .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.sticky + .content {
+    padding-top: 60px;
+} */
 
 #major-meanings {
     display: flex;
@@ -77,6 +105,9 @@ h2 {
     margin: 2%;
     background-color: hsl(190, 32%, 36%);
     color: ivory;
+    padding: 2%;
+    outline: none;
+    cursor: pointer;
 }
 
 #beauty-ul {
@@ -128,4 +159,19 @@ h2 {
 .flower-card > img {
     padding: 5%;
     padding-top: 0%;
+}
+
+.flower-card > .add-to-bouquet-button {
+    border-radius: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'EB Garamond', serif; 
+    font-size: 70%;
+    margin: 5%;
+    background-color: hsl(190, 32%, 36%);
+    color: ivory;
+    float: left;
+    padding: 3%;
+    outline: none;
+    cursor: pointer;
 }

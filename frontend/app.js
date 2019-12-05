@@ -15,6 +15,17 @@ const loveUl = document.querySelector('#love-ul')
 const wealthUl = document.querySelector('#wealth-ul')
 const characterUl = document.querySelector('#character-ul')
 
+// const header = document.querySelector('header')
+// window.onscroll = function(){pinnedHeader()}
+// const sticky = header.offsetTop
+
+// function pinnedHeader(){
+//     if (window.pageXOffset >= sticky){
+//         header.classList.add('sticky')
+//     } else {
+//         header.classList.remove('sticky')
+//     }
+// }
 
 beautyMeanings = [
     'daintiness',
@@ -146,8 +157,12 @@ function meaningButtonClick(meaningUl){
                 const flowerImage = document.createElement('img')
                 flowerImage.src = flower.image 
                 flowerImage.alt = flower.name
+
+                const addToBouquetButton = document.createElement('button')
+                addToBouquetButton.className = "add-to-bouquet-button"
+                addToBouquetButton.innerText = "Add to Bouquet"
                 
-                flowerCard.append(flowerName, flowerDescription, flowerImage)
+                flowerCard.append(flowerName, flowerDescription, flowerImage, addToBouquetButton)
                 flowerContainer.append(flowerCard)
                 }
             }))
