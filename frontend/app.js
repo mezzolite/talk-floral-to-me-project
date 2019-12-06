@@ -168,18 +168,43 @@ function meaningButtonClick(meaningUl){
                 addToBouquetButton.type = "submit"
                 addToBouquetButton.value = "Add to Bouquet"
 
+                addToBouquetForm.addEventListener('submit', event => {
+                    event.preventDefault()
+
+                    const formData = new FormData(event.target)
+                    const bouquetId = formData.get('bouquet_id')
+                    console.log(bouquetId)
+                    
+                    const bouquetCard = document.querySelector(`[data-id="${bouquetId}"]`)
+                    const bouquetFlowers = bouquetCard.querySelector('div')
+                    
+                    const bouquetFlowerName = document.createElement('h5')
+                    bouquetFlowerName.innerText = flower.name
+                    const bouquetFlowerImage = document.createElement('img')
+                    bouquetFlowerImage.src = flower.image
+    
+                    bouquetFlowers.append(bouquetFlowerName, bouquetFlowerImage)
+
+                    fetch('http://localhost:3000/bouquets-flowers', {
+                        method: "POST",
+                        headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            "bouquet_id": bouquetId,
+                            "flower_id": flower.id
+                        })
+                    })
+                })
+
                 fetch('http://localhost:3000/bouquets')
                 .then(response => response.json())
                 .then(bouquets => bouquets.map(bouquet => {
                     const bouquetOption = document.createElement('option')
                     bouquetOption.innerText = bouquet.name
                     bouquetOption.value = bouquet.id
-                    bouquetDropDown.append(bouquetOption)
-                    
-                    addToBouquetForm.addEventListener('submit', event => {
-                        event.preventDefault()
-                        addFlowerToBouquet(flower, bouquet)
-                    })
+                    bouquetDropDown.append(bouquetOption)  
                 }))
                 
                 addToBouquetForm.append(bouquetDropDown, addToBouquetButton)
@@ -190,20 +215,6 @@ function meaningButtonClick(meaningUl){
             }))
             .catch(error => console.log(error))
     })
-}
-
-function addFlowerToBouquet(flower, bouquet){
-    fetch('http://localhost:3000/bouquets-flowers', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          "bouquet_id": flower.id,
-          "flower_id": bouquet.id
-        })
-      })
 }
 
 majorMeaningButtons.addEventListener('click', event => {
@@ -245,6 +256,7 @@ function fetchBouquets(){
          .then(bouquets => bouquets.map(bouquet => {
              const bouquetCard = document.createElement('div')
              bouquetCard.className = "bouquet-card"
+             bouquetCard.dataset.id = bouquet.id
     
              const bouquetName = document.createElement('h4')
              bouquetName.innerText = bouquet.name
@@ -253,12 +265,31 @@ function fetchBouquets(){
              bouquetFlowers.className = "bouquet-flowers"
     
              bouquet.flowers.map(flower =>{
-                 const bouquetFlowerName = document.createElement('h5')
+                const bouquetFlowerDiv = document.createElement('div')
+                
+                const bouquetFlowerName = document.createElement('h5')
                  bouquetFlowerName.innerText = flower.name
                  const bouquetFlowerImage = document.createElement('img')
                  bouquetFlowerImage.src = flower.image
-    
-                 bouquetFlowers.append(bouquetFlowerName, bouquetFlowerImage)
+                 const deleteFlowerButton = document.createElement('button')
+                 deleteFlowerButton.innerText = "X"
+                
+                 bouquetFlowerDiv.append(bouquetFlowerName, bouquetFlowerImage, deleteFlowerButton)
+                 bouquetFlowers.append(bouquetFlowerDiv)
+                 
+                 deleteFlowerButton.addEventListener('click', event => {
+                    event.target.parentNode.remove()
+
+                    fetch('http://localhost:3000/bouquets-flowers/')
+                        .then(response => response.json())
+                        .then(bouquetsFlowers => bouquetsFlowers.map(bouquetFlower => {
+                            if (bouquetFlower.bouquet_id === bouquet.id && bouquetFlower.flower_id === flower.id){
+                                fetch(`http://localhost:3000/bouquets-flowers/${bouquetFlower.id}`, {
+                                    method: 'DELETE'
+                                })
+                            }
+                        }))
+                 })
              })
 
              const deleteBouquetButton = document.createElement('button')
@@ -268,7 +299,7 @@ function fetchBouquets(){
              bouquetCard.append(bouquetName, bouquetFlowers, deleteBouquetButton)
              bouquetContainer.append(bouquetCard)
 
-             
+
              deleteBouquetButton.addEventListener('click', event => {
                  event.target.parentNode.remove()
 
@@ -282,6 +313,7 @@ function fetchBouquets(){
 
 }
 
+
 newBouquetForm.addEventListener('submit', event =>{
     event.preventDefault()
 
@@ -293,20 +325,26 @@ newBouquetForm.addEventListener('submit', event =>{
     
     const bouquetName = document.createElement('h4')
     bouquetName.innerText = name
-
-    bouquetCard.append(bouquetName)
+    
+    const deleteBouquetButton = document.createElement('button')
+    deleteBouquetButton.innerText = "X"
+    deleteBouquetButton.id = "delete-bouquet-button"
+    
+    bouquetCard.append(bouquetName, deleteBouquetButton)
     bouquetContainer.append(bouquetCard)
-
+    
     fetch('http://localhost:3000/bouquets', {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
+            "Content-Type": "application/json",
+            "Accept": "application/json"
         },
         body: JSON.stringify({
-          "name": name
+            "name": name
         })
-      })
+    })
+
+    newBouquetForm.reset()
 })
 
 

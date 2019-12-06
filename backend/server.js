@@ -51,4 +51,14 @@ app.delete('/bouquets/:id', (request, response) => {
     .then(r => response.send(204))
 })
 
+app.get('/bouquets-flowers', (request, response) => {
+    queries.listAllBouquetFlowers()
+    .then(bouquetsFlowers => response.send(bouquetsFlowers))
+})
+
+app.delete('/bouquets-flowers/:id', (request, response) => {
+    queries.deleteBouquetsFlowers(request.params.id)
+    .then(r => response.send(204))
+})
+
 
