@@ -37,7 +37,7 @@ module.exports = {
 
     deleteBouquet(id){
         return database('bouquets')
-            .whereNotExists('id', id)
+            .where('id', id)
             .delete()
     },
     
