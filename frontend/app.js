@@ -151,16 +151,59 @@ function meaningButtonClick(meaningUl){
                 flowerImage.src = flower.image 
                 flowerImage.alt = flower.name
 
-                const addToBouquetButton = document.createElement('button')
-                addToBouquetButton.className = "add-to-bouquet-button"
-                addToBouquetButton.innerText = "Add to Bouquet"
+                const addToBouquetForm = document.createElement('form')
+                addToBouquetForm.id = "add-to-bouquet-form"
                 
-                flowerCard.append(flowerName, flowerDescription, flowerImage, addToBouquetButton)
+                const bouquetDropDown = document.createElement('select')
+                bouquetDropDown.id = "bouquet-drop-down"
+                bouquetDropDown.name = "bouquet_id"
+
+                const dropDownOption = document.createElement('option')
+                dropDownOption.selected = "disabled"
+                dropDownOption.innerText = "Select Bouquet"
+                bouquetDropDown.append(dropDownOption)
+
+                const addToBouquetButton = document.createElement('input')
+                addToBouquetButton.className = "add-to-bouquet-button"
+                addToBouquetButton.type = "submit"
+                addToBouquetButton.value = "Add to Bouquet"
+
+                fetch('http://localhost:3000/bouquets')
+                .then(response => response.json())
+                .then(bouquets => bouquets.map(bouquet => {
+                    const bouquetOption = document.createElement('option')
+                    bouquetOption.innerText = bouquet.name
+                    bouquetOption.value = bouquet.id
+                    bouquetDropDown.append(bouquetOption)
+                    
+                    addToBouquetForm.addEventListener('submit', event => {
+                        event.preventDefault()
+                        addFlowerToBouquet(flower, bouquet)
+                    })
+                }))
+                
+                addToBouquetForm.append(bouquetDropDown, addToBouquetButton)
+                flowerCard.append(flowerName, flowerDescription, flowerImage, addToBouquetForm)
                 flowerContainer.append(flowerCard)
+
                 }
             }))
             .catch(error => console.log(error))
     })
+}
+
+function addFlowerToBouquet(flower, bouquet){
+    fetch('http://localhost:3000/bouquets-flowers', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          "bouquet_id": flower.id,
+          "flower_id": bouquet.id
+        })
+      })
 }
 
 majorMeaningButtons.addEventListener('click', event => {
@@ -224,6 +267,17 @@ function fetchBouquets(){
     
              bouquetCard.append(bouquetName, bouquetFlowers, deleteBouquetButton)
              bouquetContainer.append(bouquetCard)
+
+             
+             deleteBouquetButton.addEventListener('click', event => {
+                 event.target.parentNode.remove()
+
+                 fetch(`http://localhost:3000/bouquets/${bouquet.id}`, {
+                     method: "DELETE"
+                 })
+                 .catch(error => console.log(error))
+             })
+
          }))
 
 }
@@ -254,6 +308,7 @@ newBouquetForm.addEventListener('submit', event =>{
         })
       })
 })
+
 
 fetchBouquets()
 

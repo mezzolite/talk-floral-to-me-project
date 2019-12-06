@@ -46,4 +46,9 @@ app.post('/bouquets-flowers', (request, response) => {
     .then(bouquetFlower => response.json(bouquetFlower)) 
 })
 
+app.delete('/bouquets/:id', (request, response) => {
+    queries.deleteBouquet(request.params.id)
+    .then(r => response.send(204))
+})
+
 

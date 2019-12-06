@@ -59,16 +59,6 @@ nav > a {
     
 }
 
-/* .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-.sticky + .content {
-    padding-top: 60px;
-} */
-
 #major-meanings {
     display: flex;
     margin-top: 3%;
@@ -143,6 +133,7 @@ nav > a {
     display: flex;
     flex-flow: wrap;
     justify-content: center;
+    opacity: 95%;
 }
 
 .flower-card {
@@ -169,7 +160,7 @@ nav > a {
     padding-top: 0%;
 }
 
-.flower-card > .add-to-bouquet-button {
+.flower-card > #add-to-bouquet-form > .add-to-bouquet-button {
     border-radius: 6px;
     text-align: center;
     text-transform: uppercase;
@@ -184,6 +175,13 @@ nav > a {
     cursor: pointer;
 }
 
+.flower-card > #add-to-bouquet-form > #bouquet-drop-down {
+    margin-left: 5%;
+    outline: none;
+    font-family: 'EB Garamond', serif; 
+    font-size: 90%;
+}
+
 #bouquet-encompass {
     display: none;
 }
@@ -194,6 +192,7 @@ nav > a {
     flex-flow: wrap;
     justify-content: center;
     margin-top: 1%;
+    opacity: 95%;
 }
 
 .bouquet-card {
