@@ -127,6 +127,7 @@ function buttonCreation(meaningArray, meaningUl){
 function changeUlDisplay(meaningUl){
      if(meaningUl.style.display === 'block'){
          meaningUl.style.display = 'none'
+         meaningUl.innerHTML = ''
     } else {
         meaningUl.style.display = 'block'
     }
