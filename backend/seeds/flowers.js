@@ -1,16 +1,15 @@
-const scraperPromise = require("../scraper")
+const flowers = require("../backup-seeds")
 
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('flowers').del()
-    .then(function () {
       // Inserts seed entries
-      return scraperPromise
-      .then(flowers => {
+      // return scraperPromise
+      .then(function () {
         return knex('flowers').insert(flowers);
 
-      })
+      
     });
 };
 
