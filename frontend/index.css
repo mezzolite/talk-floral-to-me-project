@@ -209,10 +209,13 @@ nav > a {
     padding-bottom: 5%;
 }
 
+/* .bouquet-flowers > h5 {
+    margin-bottom: 100%;
+} */
+
 .new-bouquet-form {
     padding: 2%;
     color: ivory;
-
 }
 
 .new-bouquet-form > fieldset > legend {
@@ -250,4 +253,20 @@ nav > a {
     margin-left: 0%;
     background-color: hsl(190, 32%, 36%);
     color: #e26633;
+}
+
+.bouquet-flowers > div > button {
+    border-radius: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'EB Garamond', serif; 
+    font-size: 50%;
+    margin-left: 2%;
+    background-color: ivory;
+    color: #e26633;
+}
+
+footer {
+    float: inline-end;
+    display: none;
 }

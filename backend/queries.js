@@ -40,7 +40,23 @@ module.exports = {
             .where('id', id)
             .delete()
     },
+
+    listAllBouquetFlowers(){
+        return database('bouquets-flowers')
+    },
     
+    createBouquetFlowers(bouquetFlower){
+        return database('bouquets-flowers')
+            .insert(bouquetFlower)
+            .returning('*')
+    },
+
+    deleteBouquetsFlowers(id){
+        return database('bouquets-flowers')
+            .where('id', id)
+            .delete()
+    },
+
     getFlowersInBouquets(){
         return database('bouquets')
             .then(bouquets => {
@@ -57,10 +73,5 @@ module.exports = {
             })
     },
 
-    createBouquetFlowers(bouquetFlower){
-        return database('bouquets-flowers')
-            .insert(bouquetFlower)
-            .returning('*')
-    }
 
 }
