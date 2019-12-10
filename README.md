@@ -8,6 +8,7 @@ a flower language project by Mez Charney
 Talk Floral To Me allows a user to find flowers that match the message they're trying to send. Those flowers can be collected into a bouquet to make it easy to tell a florist what a user wants.
 
 ## Demo:
+[demo video](https://www.youtube.com/watch?v=9fqJ22AjcNw)
 
 ## Stack:
 Backend: NodeJS
