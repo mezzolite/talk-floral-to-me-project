@@ -11,7 +11,7 @@ Talk Floral To Me allows a user to find flowers that match the message they're t
 [Talk Floral To Me Demo](https://www.youtube.com/watch?v=9fqJ22AjcNw)
 
 ## Stack:
-Backend: NodeJS
+Backend: Node.js
 
 ![node icon](https://icon-library.net/images/node-js-icon/node-js-icon-12.jpg)
 
